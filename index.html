@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!-- 在750px尺寸下，我们规定html元素字体大小为100px，之后据此改为css样式中的尺寸大小。将px为单位的尺寸改为rem为单位。换算公式：现在所有的px尺寸除以100就为rem值 -->
+<html lang="en" style="font-size: 100px;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- 在项目下创建index.html。
+        移动端业务需要保证布局视口等于视觉视口等于理想视口，同时避免用户缩放，
+        参考：布局视口，视觉视口，理想视口。
+        因此，需要进行以下设置： -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
+    <title>商城</title>
+<script>
+    <!-- 只实现了屏幕尺寸为750px的情况。要想解决适配问题，需要满足当屏幕尺寸变大或者缩小时。html字体大小动态改变，为了解决这个问题，这里使用JavaScript实现 -->
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if(!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 750) +'px';
+            };
+        if(!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window)
+    /*初始化的DOMContentLoaded执行recalc调整根元素字体大小，进而适配响应尺寸手机。
+    如果在移动端触发orientationchange事件；如果在Web端，当屏幕尺寸变化时触发resize。之后调整页面元素尺寸，适配屏幕尺寸变化。上述750是设计稿的初始宽度值，如果设计稿为500或者375可以将其改为对应值。*/
+        /*重要的是理解设计到开发的原理。初始值参照的是1: 1设计稿的尺寸。*/
+</script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }/*2.添加基础样式，将不同浏览器的margin、padding打平，之后人为统一设置*/
+    /*3.添加背景样式*/
+    body {
+        background: url(./imgs/blurcolor@2x.png) no-repeat no-repeat;
+        background-size: cover;/*把背景图片放大到适合元素容器的尺寸，图片比例不变，但是要注意，超出容器的部分可能会裁掉。*/
+        /*width: 750px;
+        height:1500px;*/
+    }
+    /*如何在电脑端打开移动端预览效果。首先是打开浏览器的开发者工具。Window系统可以右键网页，之后点击最后一项的检查即可；还可以直接按组合键：alt + shift + i。打开之后，选择开发者工具左上角的移动端图标即可，即可浏览当前网页的移动端效果。*/
+    /*4.头部样式*/
+    .header-banner {
+        width: 100%;
+    }
+    .header h2 {
+        height: 1.1rem;
+        text-align: center;
+        line-height: 1.1rem;
+        font-size: 0.37rem;
+    }
+    .content {
+        margin-bottom: 2rem;
+    }
+    .content .content-nav {
+        padding: 0.48rem;
+    }
+    .content .content-nav .item {
+        display: flex;
+        justify-content: space-between;
+    }
+    .content .content-nav .item+.item {
+        margin-top: 0.48rem;
+    }
+    .content .content-nav .item .unit {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .content .content-nav .item .unit span {
+        margin-top: 0.2rem;
+        color: rgba(0,0,0,0.65);
+        text-align: center;
+        font-size: 0.28rem;
+    }
+
+    .content .content-goods {
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+    }
+    .content .content-goods .item {
+        display: flex;
+        justify-content: space-between;
+    }
+    .content .content-goods .item .unit:first-child {
+        margin-bottom: 0.22rem;
+    }
+    .content .content-goods .item .unit {
+        width: 3.24rem;
+        height: 4.32rem;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border-radius: 0.16rem;
+        border: 1px solid rgba(0,0,0,0.1);
+        padding:0.24rem;
+    }
+    .content .content-goods .item .unit img {
+        width: 2.76rem;
+        height: 2.76rem;
+        display: block;
+    }
+    .content .content-goods .item .unit p:first-of-type {
+        margin-top: 0.24rem;
+        color: rgba(0,0,0,0.85);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+    }
+    .content .content-goods .item .unit p:last-of-type {
+        margin-top: 0.12rem;
+        color: #3642FF;
+    }
+    .content .content-goods .item .unit p {
+        font-size: 0.28rem;
+    }
+    /*底部样式*/
+    .footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        height: 1rem;
+        background: #FFFFFF;
+        box-shadow: 0px -1px 8px 0px rgb(0, 0, 0, 0.06);
+        display: flex;
+        justify-content: space-around;
+    }
+    .footer div {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .footer div p {
+        text-align: center;
+        font-size: 0.24rem;
+        color:#000000;
+    }
+    .footer div img {
+        width: 0.48rem;
+        height: 0.48rem;
+    }
+    .footer div.active p {
+        color: #3642FF;
+    }
+    /*如果设备像素大于等于2，则背景图用2倍图*/
+    @media screen and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min--moz-device-pixel-ratio: 2) {
+        body {
+            background: url(./imgs/blurcolor@2x.png) no-repeat no-repeat;
+        }
+    }
+    /*如果设备像素大于等于3，则用3倍图*/
+    @media screen and (-webkit-min-device-pixel-ratio: 3),
+    screen and (min--moz-device-pixel-ratio: 3) {
+        body {
+            background: url(./imgs/blurcolor@3x.png) no-repeat no-repeat;
+        }
+    }
+</style>
+<body>
+<!-- 将效果图分成三部分：头部、内容区和底部。
+    头部：头部包括标题和标题下的幻灯片。
+    内容区：内容区包括图标导航和积分兑换套餐。
+    底部：固定底部导航栏。 -->
+
+<!-- 1.头部：头部包括标题和标题下的幻灯片 -->
+<header class="header">
+<h2> 信用卡积分兑换商城</h2>
+<img class="header-banner" src="./imgs/banner@2x.png" srcset="./imgs/banner@2x.png 2x,./imgs/banner@3x.png 3x">
+</header>
+<!-- 5.内容区：内容区包括图标导航和积分兑换套餐 -->
+<!-- 图标导航和积分兑换套餐均采用弹性盒子布局，也即display:flex。
+    具体开发中，四个图标一行，均匀分布在一行上。
+    积分兑换套餐竖向列举，每个之间竖向有一定间距；在实际最终的效果上还会加上无限加载效果 -->
+<main class="content">
+    <div class="content-nav">
+        <div class="item">
+            <div class="unit">
+                <!-- 2x、3x 表示目标屏幕的像素密度；400w、600w表示目标浏览器的宽度的限度，如浏览器宽度550w时，匹配600w的src。 -->
+                <img src="./imgs/unique@2x.png" srcset="./imgs/unique@2x.png 2x,./imgs/unique@3x.png 3x">
+                <span>本卡专区</span>
+            </div>
+            <div class="unit">
+                <img src="./imgs/car@2x.png" srcset="./imgs/car@2x.png 2x,./imgs/car@3x.png 3x">
+                <span>汽车用品</span>
+            </div>
+            <div class="unit">
+                <img src="./imgs/digital@2x.png" srcset="./imgs/digital@2x.png 2x,./imgs/digital@3x.png 3x">
+                <span>潮流数码</span>
+            </div>
+            <div class="unit">
+                <img src="./imgs/sport@2x.png" srcset="./imgs/sport@2x.png 2x,./imgs/sport@3x.png 3x">
+                <span>户外运动</span>
+            </div>
+        </div>
+        <div class="item">
+            <div class="unit">
+                <img src="./imgs/bag@2x.png" srcset="./imgs/bag@2x.png 2x,./imgs/bag@3x.png 3x">
+                <span>箱包饰品</span>
+            </div>
+            <div class="unit">
+                <img src="./imgs/photo@2x.png" srcset="./imgs/photo@2x.png 2x,./imgs/photo@3x.png 3x">
+                <span>摄影器材</span>
+            </div>
+            <div class="unit">
+                <img src="./imgs/card@2x.png" srcset="./imgs/card@2x.png 2x,./imgs/card@3x.png 3x">
+                <span>电子礼券</span>
+            </div>
+            <div class="unit">
+                <img src="./imgs/goods@2x.png" srcset="./imgs/goods@2x.png 2x,./imgs/goods@3x.png 3x">
+                <span>全部商品</span>
+            </div>
+        </div>
+    </div>
+    <div class="content-goods">
+        <div class="item">
+            <div class="unit">
+                <img src="./imgs/backz@2x.png" srcset="./imgs/backz@2x.png 2x,./imgs/backz@3x.png 3x">
+                <p>Galaxy Z系列 5折券</p>
+                <p>50积分</p>
+            </div>
+            <div class="unit">
+                <img src="./imgs/phone@2x.png" srcset="./imgs/phone@2x.png 2x,./imgs/phone@3x.png 3x">
+                <p>Galaxy Note20系列</p>
+                <p>10000积分</p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="unit">
+                <img src="./imgs/battery@2x.png" srcset="./imgs/battery@2x.png 2x,./imgs/battery@3x.png 3x">
+                <p>Galaxy Note10系列</p>
+                <p>80积分</p>
+            </div>
+            <div class="unit">
+                <img src="./imgs/back20@2x.png" srcset="./imgs/back20@2x.png 2x,./imgs/back20@3x.png 3x">
+                <p>Galaxy Note20系列</p>
+                <p>50积分</p>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- 底部：固定底部导航栏 -->
+<footer class="footer">
+    <div class="active">
+        <img src="./imgs/home@2x.png" srcset="./imgs/home@2x.png 2x,./imgs/home@3x.png 3x">
+        <p>首页</p>
+    </div>
+    <div>
+        <img src="./imgs/kindof@2x.png" srcset="./imgs/kindof@2x.png 2x,./imgs/kindof@3x.png 3x">
+        <p>分类</p>
+    </div>
+    <div>
+        <img src="./imgs/order@2x.png" srcset="./imgs/order@2x.png 2x,./imgs/order@3x.png 3x">
+        <p>订单</p>
+    </div>
+    <div class="myorder">
+        <img src="./imgs/my@2x.png" srcset="./imgs/my@2x.png 2x,./imgs/my@3x.png 3x">
+        <!-- 以上代码当设备像素比<=2，采用@2x也就是2倍图片；当设备像素比>2采用@2x也就是3倍图片。这主要考虑到大尺寸时候使用@1x也就是1倍图失真严重 -->
+        <p>我的</p>
+    </div>
+</footer>
+</body>
+</html>

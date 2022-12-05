@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <div class="box1"><div class="box2"></div>
+        <div class="box2"></div>
+        <div class="box2"></div></div>
+        <div class="box3"></div>
+        
+
+    </div>
+   
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            background:pink;
+            display: flex;
+            /*flex-direction: column;/*垂直一列排序*/
+            /*flex-direction: column-reverse; 垂直一列反着来*/
+            /*主轴对切*/
+            justify-content: space-between;/*center：居中；space-around：平均分*/
+            align-items: center;/*垂直居中*/
+
+        }
+        .box1 {
+            width: 400px;
+            height: 200px;
+            background:green;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;/*底部*/
+        }
+        .box2 {
+            width: 15px;
+            height: 15px;
+            background: black;
+            margin: 10px;
+            border-radius: 50%;/*纯圆*/
+            margin-bottom: 20px;
+            order: 8;
+        }
+        .box3 {
+            width: 200px;
+            height: 200px;
+            background:blue;
+        }
+    </style>
+</body>
+</html>

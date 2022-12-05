@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            width: 300px;
+            height: 300px;
+            background: lightblue;
+            display: grid;
+            grid-template-columns:repeat(3, 1fr);/* 1fr 1fr 1fr;/*3列*/
+            grid-template-rows: repeat(2, 1fr);
+            /*grid-template-rows: 1fr 1fr;/*2行*/
+            gap: 5px;/*网格间距*/
+        }
+        .main div {
+            background: pink;
+        }
+        .main div:nth-of-type(1) {
+            grid-area: 1/1/span 1/span 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+</body>
+</html>

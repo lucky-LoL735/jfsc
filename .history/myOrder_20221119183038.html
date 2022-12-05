@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 100px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的订单</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: url(./imgs/blurcolor@2x.png) no-repeat no-repeat;
+        background-size: cover;
+        /*把背景图片放大到适合元素容器的尺寸，图片比例不变，但是要注意，超出容器的部分可能会裁掉。*/
+    }
+
+    .header {
+        background: #FFFFFF;
+    }
+
+    .header .title h2 {
+        height: 1.1rem;
+        text-align: center;
+        line-height: 1.1rem;
+        font-size: 0.37rem;
+    }
+
+    .header .nav {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.26rem;
+
+    }
+
+    .header .nav div {
+        flex: 1;
+        text-align: center;
+    }
+
+    .header .nav .active {
+        padding: 0 0 0.15rem 0;
+        font-weight: bold;
+        color: #3642FF;
+        border-bottom: 3px solid #3642FF;
+    }
+
+    .header .nav .tail {
+        padding: 0 0.2rem 0.15rem 0;
+        margin: 0;
+    }
+
+    .content {
+        padding: 0.1rem 0.2rem 0 0.2rem;
+
+    }
+
+    .content .item {
+        display: flex;
+        /*justify-content: space-around;*/
+        align-items: center;
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 2.24rem;
+        border-radius: 0.18rem;
+        margin-bottom: 0.2rem;
+
+    }
+
+    .content .item .img img {
+        display: flex;
+        width: 1.76rem;
+        height: 1.76rem;
+        padding: 0.2rem;
+    }
+
+    .content .item .info {
+        display: block;
+        color: rgba(0, 0, 0, 0.65);
+        text-align: left;
+    }
+
+    .content .item .info p:first-of-type {
+        color: rgba(0, 0, 0, 0.85);
+        font-weight: bolder;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .content .item .info p:last-of-type {
+        margin-top: 0.12rem;
+        color: #3642FF;
+    }
+
+    .content .item .info p {
+        font-size: 0.28rem;
+    }
+
+    .content .item .badge span {
+        display: flex;
+        /*border: 1px solid #c94c5f;
+        background: pink;
+        color: #ce6575;*/
+        padding: 0.05rem 0.1rem 0.05rem 0.1rem;
+        border-radius: 0.05rem;
+        text-align: center;
+        font-size: 0.18rem;
+        margin-left: 0.7rem;
+    }
+
+    .a {
+        background-color: rgb(251, 233, 235);
+    }
+
+    .b {
+        background-color: rgb(236, 60, 60);
+    }
+
+    .c {
+        background-color: rgb(164, 162, 162);
+    }
+
+
+    /*如果设备像素大于等于2，则背景图用2倍图*/
+    @media screen and (-webkit-min-device-pixel-ratio: 2),
+    screen and (min--moz-device-pixel-ratio: 2) {
+        body {
+            background: url(./imgs/blurcolor@2x.png) no-repeat no-repeat;
+        }
+    }
+
+    /*如果设备像素大于等于3，则用3倍图*/
+    @media screen and (-webkit-min-device-pixel-ratio: 3),
+    screen and (min--moz-device-pixel-ratio: 3) {
+        body {
+            background: url(./imgs/blurcolor@3x.png) no-repeat no-repeat;
+        }
+    }
+</style>
+
+<body>
+    <div class="header">
+        <div class="title">
+            <h2>我的订单</h2>
+        </div>
+        <div class="nav">
+            <div class="active">
+                <p>全部</p>
+            </div>
+            <div>
+                <p>待付款</p>
+            </div>
+            <div>
+                <p>待发货</p>
+            </div>
+            <div>
+                <p>已完成</p>
+            </div>
+            <div class="tail">
+                <p>退款/售后</p>
+            </div>
+        </div>
+    </div>
+    <main>
+        <div class="content">
+        </div>
+    </main>
+</body>
+
+<script>
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window)
+
+    var content = document.getElementsByClassName("content");
+    var item = [
+        { img: './imgs/backz@2x.png', srcset: './imgs/backz@2x.png 2x,./imgs/back@3x.png 3x', name: 'Galaxy Z系列系列 5折券', number: '50积分', status: '待付款', statusFlag: 'waitOrder'},
+        { img: './imgs/phone@2x.png', srcset: './imgs/phone@2x.png 2x,./imgs/phone@3x.png 3x', name: 'Galaxy Note20系列手机', number: '50积分', status: '已完成', statusFlag: 'finishOrder'},
+        { img: './imgs/backz@2x.png', srcset: './imgs/backz@2x.png 2x,./imgs/back@3x.png 3x', name: 'Galaxy Z系列系列 5折券', number: '50积分', status: '待发货', statusFlag: 'sendOrder'},
+        { img: './imgs/backz@2x.png', srcset: './imgs/backz@2x.png 2x,./imgs/back@3x.png 3x', name: 'Galaxy Z系列系列 5折券', number: '50积分', status: '售后中', statusFlag: 'saleOrder' },
+        { img: './imgs/backz@2x.png', srcset: './imgs/backz@2x.png 2x,./imgs/back@3x.png 3x', name: 'Galaxy Z系列系列 5折券', number: '50积分', status: '待发货', statusFlag: 'sendOrder' },
+        { img: './imgs/backz@2x.png', srcset: './imgs/backz@2x.png 2x,./imgs/back@3x.png 3x', name: 'Galaxy Z系列系列 5折券', number: '50积分', status: '待发货', statusFlag: 'sendOrder' }
+    ]
+    /*循环加载到页面*/
+    function getOrderData() {
+        var html = '';
+        for (var i = 0; i < item.length; i++) {
+            html += ` <div class="item">
+            <div class="img">
+                <img src=${item[i].img} srcset=${item[i].srcset} />
+            </div>
+            <div class="info">
+                <p>${item[i].name}</p>
+                <p>${item[i].number}</p>
+            </div>
+            <div class="badge">
+            <span class=${item[i].statusOrder}>${item[i].status}</span>
+         </div>
+        </div>`
+        var orderStatus1 = document.getElementsByClassName(`${item[i].statusOrder}`);
+        console.log(orderStatus1);
+        }
+        content[0].innerHTML = html;
+    }
+
+    window.onload = getOrderData();
+    /*获取span文字内容*/
+    var orderStatus = document.getElementsByClassName("badge1");
+    console.log(orderStatus)
+    /*获取dom，修改订单状态css样式*/
+    function cssStyleOrder(orderStatus) {
+        for (var item = 0; item < orderStatus.length; item++) {
+            if (orderStatus[item].innerText == '待付款') {
+                var cssText = "border:1px solid rgb(255, 190, 189);background:rgb(255, 237, 234);color:rgb(252, 127, 131)"
+                orderStatus[item].style.cssText = cssText;
+            } else if (orderStatus[item].innerText == '待发货') {
+                var cssText = "border:1px solid rgb(214, 213, 214);background:rgb(245, 245, 245);color:rgb(160, 158, 158)"
+                orderStatus[item].style.cssText = cssText;
+            } else if (orderStatus[item].innerText == '已完成') {
+                var cssText = "border:1px solid rgb(201, 242, 168);background:rgb(246, 255, 235);color:rgb(144, 220, 110)"
+                orderStatus[item].style.cssText = cssText;
+            } else if (orderStatus[item].innerText == '售后中') {
+                var cssText = "border:1px solid rgb(255, 235, 157);background:rgb(255, 250, 225);color:rgb(252, 184, 66)"
+                orderStatus[item].style.cssText = cssText;
+            }
+        }
+    }
+    /*调用修改css样式函数*/
+    cssStyleOrder(orderStatus); 
+</script>
+
+</html>

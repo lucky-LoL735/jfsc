@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 创建Symbol
+    let  s = Symbol()
+    console.log(s,typeof s)
+    let s2 = Symbol('lois')
+    console.log(s2, typeof s2)
+    let s3 = Symbol('lois')
+    console.log(s2 === s3)
+    // Symbol.for创建
+    let s4 =Symbol.for('lois4')
+    console.log(s4, typeof s4)
+    let s5 = Symbol.for('lois4')
+    console.log(s4 === s5)
+
+    //不能与其他数据运算
+
+    //总结：USONB 
+    //undefined、string symbol、object、null number、boolean
+
+
+    // 对象添加Symbol类型的属性
+    // 向对象中添加方法 up down
+
+    let game = {
+      name: '狼人杀',
+      [Symbol('say')]: function(){//给game添加独一无二的方法
+        console.log('发言')
+      },
+      [Symbol('bom')]: function(){
+        console.log('自曝')
+      }
+    }
+    
+console.log(game)
+  </script>
+</body>
+</html>

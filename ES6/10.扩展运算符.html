@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+  <script>
+    //  「...」扩展运算符能将 「数组」 转换为逗号分隔符的 「参数序列」
+    // 声明一个数组
+    const tf = ['t','f','3']
+    // => 't','f','3'
+    function perform(){
+      console.log(arguments)
+    }
+    perform(...tf)//三个参数perform('t','f','3')
+
+    //应用
+    //1. 数组合并
+    const com = ['lois','lili']
+    const rot = ['moncky', 'somi']
+    const merge = [...com,...rot]
+    console.log(merge)
+
+    //2. 数组克隆
+    const a = ['A','B','C']
+    const b = [...a]
+    console.log(b)
+
+    //3. 将伪数组转为真正的数组
+    const divs = document.querySelectorAll('div')
+    console.log(divs)
+    const divsArr = [...divs]
+     console.log(divsArr)
+ </script>
+  
+</body>
+</html>

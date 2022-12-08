@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //声明一个数组
+    const arr = ['lois','lili']
+
+    //使用for...of遍历数组
+    for(let i of arr){
+      console.log(i)
+    }
+
+    let iterator = arr[Symbol.iterator]()
+    console.log(iterator.next())
+      console.log(iterator.next())
+      console.log(iterator.next())
+      console.log(iterator.next())
+
+      //迭代器应用
+      const g = {
+        name: 'game',
+        status: ['a','b','c'],
+        [Symbol.iterator](){
+          //索引变量
+          let index = 0
+          //
+          let _this = this
+          return {
+            next: function(){
+              if(index < _this.status.length){
+                const result =  { value: _this.status[index], done: false }
+                index++;
+                return result
+              } else {
+                return {value:undefined,done:true}
+              }
+            }
+          }
+        }
+      }
+
+      //遍历
+      for(let i of g){
+        console.log(i)
+      }
+  </script>
+</body>
+</html>

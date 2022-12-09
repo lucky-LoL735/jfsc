@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //声明一个set
+    let s = new Set()
+    let s1 = new Set(['lois','123','123','lili'])//去重
+    //元素个数
+    console.log(s1.size)
+    //新增 add
+    s1.add('coco')
+    //删除
+    s1.delete('123')
+    //检测
+    console.log(s1.has('lo'))
+    //清空
+    s1.clear()
+
+    //实践
+    let arr = [1,2,3,45,3,4,5,5,2]
+    //1.数组去重
+    let result = [...new Set(arr)];
+    console.log(result)
+    //2.交集
+    let arr1 = [4,5,6,,5,6]
+    let result1 = [...new Set(arr)].filter(item => {
+      let s2 = new Set(arr2);
+      if(s2.has(item)){
+        return true
+      }
+      return false
+    })
+    //简化
+    let result2 = [...new Set(arr)].filter(item => new Set(arr2).has(item))
+    console.log(result1)
+  </script>
+</body>
+</html>

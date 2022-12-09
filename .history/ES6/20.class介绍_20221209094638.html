@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Phone(brand, price){
+      this.brand = brand;
+      this.price = price
+    }
+    //添加方法
+    Phone.prototype.call = function(){
+      console.log('i can call!')
+    }
+    //实例化对象
+    let HUAWEI = new Phone('HUAWEI','9000')
+    console.log(HUAWEI)
+
+
+    //ES6
+    class Phone1{
+      //构造方法 名字不能改
+      constructor(brand, price) {
+        this.brand = brand;
+        this.price = price
+      }
+      //方法必须使用该方法，不能使用ES6的对象完成形式
+      call(){
+        console.log('ES6---i can call!')
+      }
+    }
+    let apple = new Phone1('apple phone',9999)
+    console.log(apple)
+  </script>
+</body>
+</html>

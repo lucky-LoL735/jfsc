@@ -40,65 +40,29 @@
       //3.实例1
       //异步编程 文件操作、网络操作（ajax、request）数据库操作
       //1s 后控制台输出 111 ； 2s 后控制台输出 222 ； 3s后 输出333
-      /*function one() {
+      function one() {
         setTimeout(() => {
           console.log(111)
-          iterator2.next()
         }, 1000)
       }
       function two() {
           setTimeout(() => {
             console.log(222)
-            iterator2.next()
           }, 2000)
         }
       function three() {
           setTimeout(() => {
             console.log(333)
-            iterator2.next()
           }, 3000)
         }
-        function * gen2() {
+        function * gen() {
           yield one();
           yield two();
           yield three();
         }
         // 调用生成器函数
-        let iterator2 = gen2()
-        iterator2.next()*/
-
-         //3.2 实例2
-         //模拟获取 获取用户数据 用户对应的订单数据 订单对应的商品数据
-         function getUsers() {
-          setTimeout(() => {
-            let data='用户数据'
-            iterator3.next(data);
-          },1000)
-         }
-         function getOrders() {
-            setTimeout(() => {
-              let data = '订单数据';
-              //调用next，并且将数据传入
-              iterator3.next(data);
-            }, 1000)
-          }
-          function getGoods() {
-              setTimeout(() => {
-                let data = '商品数据'
-                iterator3.next(data);
-              }, 1000)
-          }
-          function * gen3() {
-           let users = yield getUsers();
-           console.log(users)
-           let orders =yield getOrders();
-           console.log(orders)
-           let goods = yield getGoods();
-           console.log(goods)
-          }
-          let iterator3 = gen3()
-          iterator3.next()
-
+        let iterator2 = gen()
+        iterator2.next()
   </script>
   
 </body>
